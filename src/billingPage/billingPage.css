@@ -1,0 +1,204 @@
+/* .profile-subheader {
+  display: flex;
+  flex-direction: row;
+  background-color: rgb(177, 214, 214);
+  justify-content: space-around;
+  flex-wrap: wrap;
+  border-radius: 8px;
+  color: black;
+}
+.profile_info_img {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+  gap: 16px;
+} */
+.ant-card-head {
+  min-height: 38px !important;
+  background-color: #35b1ab !important;
+  /* background: linear-gradient(
+    to bottom,
+    #1e8a85,
+    #25ebe1,
+    #48cdd1,
+    #e0fefe
+  ) !important; */
+}
+.ant-card-body {
+  padding: 10px !important;
+  /* background-color: rgb(204, 236, 231); */
+  min-height: 180px;
+  background: linear-gradient(
+    to bottom,
+    #00748b,
+    #25ebe1 /* #48cdd1,
+    #e0fefe */
+  ) !important;
+}
+.profile_info_head {
+  font-weight: 500;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  font-size: 12px;
+}
+.profile_info_body {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  text-align: end;
+  flex-wrap: wrap;
+  font-size: 12px;
+}
+.profile-card-2 {
+  width: 300px;
+  padding: 20px;
+}
+
+.text-header-p {
+  text-align: center;
+  font-weight: 500;
+  font-size: 18px;
+  background-color: #ddd;
+  margin: 0;
+  color: black;
+  margin-bottom: 10px;
+  border-radius: 8px;
+}
+a {
+  cursor: pointer;
+}
+.profile_dispaly {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.profile_dispaly_label > span {
+  font-weight: 700;
+}
+.display-mbl {
+  gap: 10px;
+}
+input:focus-within {
+  border-color: #2b9aca !important;
+}
+input:focus-visible {
+  outline: none;
+}
+select:focus-within {
+  border-color: #2b9aca !important;
+}
+select:focus-visible {
+  outline: none;
+}
+.form-input > input,
+select {
+  border: 2px solid white;
+  border-radius: 8px;
+  padding: 5px !important;
+  width: 190px;
+}
+.css-7mctoh-MuiButtonBase-root-MuiCheckbox-root {
+  color: white !important;
+}
+.css-7mctoh-MuiButtonBase-root-MuiCheckbox-root.Mui-checked {
+  color: white !important;
+}
+.css-imrjgg-MuiButtonBase-root-MuiCheckbox-root.Mui-checked {
+  color: #2b9aca !important;
+}
+.css-10egq61 {
+  flex-wrap: wrap;
+}
+
+/* Custom scrollbar for PatientInfo and main content sections */
+/* .custom-scrollbar {
+  scrollbar-width: thin; 
+  scrollbar-color: #888 #f1f1f1; 
+} */
+/* .custom-scrollbar{
+  border-radius: 8px;
+  height: 100%;
+  overflow: auto;
+}
+ .custom-scrollbar::-webkit-scrollbar {
+  width: 8px;
+}
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: #f5f6f7; 
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background-color: #cccccc; 
+  border-radius: 4px; 
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background-color: #ddd; 
+}  */
+@media screen and (max-width: 450px) {
+  .display-mbl {
+    flex-direction: column;
+  }
+  .profile-card-2 {
+    width: 300px !important;
+  }
+  /* .patient-card{
+    padding-left: 0;
+  } */
+}
+
+.bill-form {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, 180px);
+  gap: 16px;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+.ant-collapse-header {
+  padding: 5px !important;
+}
+
+/* ----------- */
+
+.profile-bg {
+  height: 60px;
+  position: relative;
+  /* background: linear-gradient(
+    to bottom,
+    #1e8a85 0%,
+    #1e8a85 25%,
+    #25ebe1 25%,
+    #25ebe1 50%,
+    #48cdd1 50%,
+    #48cdd1 75%,
+    #aacccc 75%,
+    #aacccc 100%
+  ); */
+  background: linear-gradient(to bottom, #00748b, #25ebe1);
+  border-radius: 8px;
+}
+
+.profile_dispaly_label {
+  display: flex;
+  gap: 30px;
+  margin-top: auto;
+  margin-bottom: auto;
+  padding-left: 15px;
+  background: linear-gradient(to right, #00748b, #bcc9cc) left no-repeat;
+  background-size: 5px 100%; /* Width of the "border" and height */
+}
+/* .ant-tabs-card.ant-tabs-top > .ant-tabs-nav .ant-tabs-tab {
+  border-color: #00748b;
+  padding: 5px !important;
+  border: 3px solid #00748b !important;
+  background-color: #00748b;
+  color: white !important;
+} */
+/* .css-1tlcqt-MuiAutocomplete-root
+  .MuiOutlinedInput-root.MuiInputBase-sizeSmall
+  .MuiAutocomplete-input {
+  font-size: 12px !important;
+} */

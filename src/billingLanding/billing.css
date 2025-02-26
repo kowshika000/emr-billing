@@ -1,0 +1,47 @@
+.table-container .ant-table {
+  background-color: #f9f9f9;
+  border-radius: 4px;
+  padding-top: 10px;
+  font-size: small;
+}
+.table-container .ant-table-thead > tr > th {
+  background-color: #00748b;
+  color: white;
+  font-weight: bold;
+}
+.table-container .ant-table-tbody > tr:nth-child(odd) {
+  background-color: #e2e2e2;
+}
+.table-container .ant-table-tbody > tr:nth-child(even) {
+  background-color: #ffffff;
+}
+.table-container .ant-table-tbody > tr:hover {
+  background-color: inherit;
+}
+.table-container .ant-table-cell {
+  padding: 14px !important;
+}
+.text-header {
+  font-size: 15px;
+  font-weight: 500;
+}
+
+/* ------------------------- */
+
+.billing-form-container {
+  /* border-radius: 4px;
+  padding: 20px; */
+  /* background-color: rgb(236, 238, 238); */
+  display: grid;
+  grid-template-columns: repeat(auto-fit, 180px);
+  gap: 16px;
+  justify-content: space-between;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+.form-box {
+  border-radius: 10px;
+  padding: 16px;
+  background: linear-gradient(to bottom, #c0c0c0, rgb(131, 214, 200));
+}

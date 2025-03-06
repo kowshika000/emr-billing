@@ -13,21 +13,24 @@ const BillingTable = ({ navigate, searchData }) => {
     dispatch(allPatients());
   }, [dispatch]);
 
-  const handleNameClick = async (patientId) => {
-    try {
-      const resultAction = await dispatch(patientDetails({ patientId }));
+  const { patientDetailsData } = useSelector(
+    (state) => state.billing?.patientDetail
+  );
+  const [selectedPatient, setSelectedPatient] = useState(null);
 
-      if (patientDetails.fulfilled.match(resultAction)) {
-        const patientInfo = resultAction.payload?.data?.data;
-
-        navigate(`/secure/billing/details`, { state: { patientInfo } });
-      } else {
-        console.error("API Error:", resultAction.payload);
-      }
-    } catch (error) {
-      console.error("Error fetching patient details:", error);
-    }
+  const handleNameClick = (patientId) => {
+    dispatch(patientDetails({ patientId }));
+    setSelectedPatient(patientId); // Store patient ID for useEffect
   };
+
+  // Wait for the data to be available before navigating
+  useEffect(() => {
+    if (selectedPatient && patientDetailsData?.data) {
+      navigate(`/secure/billing/details`, {
+        state: { patientInfo: patientDetailsData.data },
+      });
+    }
+  }, [selectedPatient, patientDetailsData, navigate]);
 
   const columns = [
     {

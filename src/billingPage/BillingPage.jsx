@@ -11,7 +11,7 @@ import { Spin } from "antd";
 
 const BillingPage = () => {
   // Destructure and provide a default value in case state.patientDetail is undefined
-  // const { loading } = useSelector((state) => state.patientDetail || { loading: false });
+  // const { loading } = useSelector((state) => state.billing?.patientDetail || { loading: false });
 
   return (
     <Box

@@ -9,10 +9,13 @@ import { useEffect } from "react";
 
 const BillingSearch = ({ navigate }) => {
   const dispatch = useDispatch();
-  const [searchData, setSearchData] = useState();
-  // const data = useSelector((state) => state.searchPatient || []);
 
-  // console.log(data);
+  const { searchPatientData } = useSelector(
+    (state) => state.billing?.searchPatient
+  );
+
+  console.log("searchPatientData", searchPatientData);
+  const searchData = searchPatientData?.content;
 
   const status = [
     { label: "Closed", value: "closed" },
@@ -41,24 +44,11 @@ const BillingSearch = ({ navigate }) => {
   };
 
   useEffect(() => {
-    dispatch(searchPatients(formData)).then((resultAction) => {
-      if (searchPatients.fulfilled.match(resultAction)) {
-        console.log("API Response Data:", resultAction.payload.data.content);
-        setSearchData(resultAction.payload.data.content);
-      } else {
-        console.error("API Error:", resultAction.payload);
-      }
-    });
+    dispatch(searchPatients(formData));
   }, [dispatch]);
+
   const handleClick = () => {
-    dispatch(searchPatients(formData)).then((resultAction) => {
-      if (searchPatients.fulfilled.match(resultAction)) {
-        console.log("API Response Data:", resultAction.payload.data.content);
-        setSearchData(resultAction.payload.data.content);
-      } else {
-        console.error("API Error:", resultAction.payload);
-      }
-    });
+    dispatch(searchPatients(formData));
   };
 
   return (

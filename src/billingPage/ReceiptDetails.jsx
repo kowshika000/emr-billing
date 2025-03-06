@@ -97,11 +97,12 @@ const ReceiptDetails = () => {
       </div>
 
       {/* MODAL */}
+    
       <Modal open={open} onClose={handleClose}>
         <Box
           className="modal-content"
           sx={{
-            width: 500,
+            width: 800,
             bgcolor: "white",
             p: 3,
             borderRadius: 2,
@@ -118,15 +119,40 @@ const ReceiptDetails = () => {
               <p>123, Main Street, City, Country</p>
               <p>Phone: (123) 456-7890 | Email: contact@xyzhospital.com</p>
             </Box>
-
-            <Box className="receipt-details">
-              <p><strong>Receipt Type:</strong> {receiptType}</p>
-              <p><strong>Amount:</strong> {amount}</p>
-              <p><strong>Remarks:</strong> {remarks}</p>
-              <p><strong>Balance Payable:</strong> {balancePayable}</p>
+            <hr/>
+            <Box display={"flex"} justifyContent={"space-between"}>
+               <p><strong>Receipt No:</strong> RN003</p>
+               <p><strong>Receipt Date:</strong> 2024-9-23</p>
             </Box>
-
-            {receiptType === "card" && (
+            <hr/>
+            <Box className="receipt-details" display={"flex"} justifyContent={"space-between"}>
+              <div>
+              <p><strong>Name:</strong> xxxx</p>
+              <p><strong>Mobile:</strong> xxxxx</p>
+              <p><strong>MRD No:</strong> xxxxx</p>
+              <p><strong>Doctor:</strong> xxxx</p>
+              {/* <p><strong>Doctor:</strong> {balancePayable}</p> */}
+              </div>
+              <div>
+              <p><strong>Payable Amount:</strong> xxx</p>
+              <p><strong>Paid Amount:</strong> xxxx</p>
+              <p><strong>Balance Amount:</strong> xxxx</p>
+              <p><strong>Balance Payable:</strong> xxxx</p>
+              </div>
+            </Box>
+            <hr/>
+            <Box >
+               <p><strong>Paid By:</strong>xxx</p>
+               <p><strong>Amount:</strong> xxxxxxx</p>
+               <p><strong>Paid Mode:</strong>xxx</p>
+               <p><strong>For:</strong>xxx</p>
+            </Box>
+            <hr/>
+            <Box>
+              <div>xxxxx</div>
+              <div>yyyy-mm-dd</div>
+            </Box>
+            {/* {receiptType === "card" && (
               <Box>
                 <Box className="text-header">Card Details</Box>
                 <p><strong>Card Number:</strong> {cardDetails.cardNumber}</p>
@@ -135,7 +161,7 @@ const ReceiptDetails = () => {
                 <p><strong>Year:</strong> {cardDetails.year}</p>
                 <p><strong>Bank:</strong> {cardDetails.bank}</p>
               </Box>
-            )}
+            )} */}
           </Box>
 
           <div className="d-flex justify-content-end gap-3 mt-3">

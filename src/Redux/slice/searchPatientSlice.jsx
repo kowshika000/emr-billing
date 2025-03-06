@@ -35,10 +35,9 @@ const searchPatientsSlice = createSlice({
         state.error = null;
       })
       .addCase(searchPatients.fulfilled, (state, action) => {
-        console.log("✅ Redux: searchPatients.fulfilled called!"); // ✅ Debug Redux update
         console.log("✅ Redux Received Data:", action.payload); // ✅ Debug payload
         state.loading = false;
-        state.searchPatientData = action.payload; // Ensure this matches expected data
+        state.searchPatientData = action.payload.data; // Ensure this matches expected data
       })
       .addCase(searchPatients.rejected, (state, action) => {
         console.log("❌ Redux: searchPatients.rejected called! Error:", action.payload);

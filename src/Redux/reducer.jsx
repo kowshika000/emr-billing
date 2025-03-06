@@ -1,4 +1,4 @@
-import { combineReducers } from "redux";
+import { combineReducers } from "@reduxjs/toolkit";
 import allPatientsReducer from "./slice/allPatientSlice";
 import searchPatientsReducer from "./slice/searchPatientSlice";
 import patientDetailsReducer from "./slice/patientDetailsSlice";
@@ -9,7 +9,7 @@ import procedureOrderReducer from "./slice/procedureOrderSlice";
 import additionalChargeReducer from "./slice/addtionalChargeSlice";
 import searchLabtestsReducer from "./slice/searchLabTestsSlice";
 
-export const rootReducer = combineReducers({
+const billingReducer = combineReducers({
   allPatient: allPatientsReducer,
   searchPatient: searchPatientsReducer,
   patientDetail: patientDetailsReducer,
@@ -20,3 +20,5 @@ export const rootReducer = combineReducers({
   procedureOrder: procedureOrderReducer,
   additional: additionalChargeReducer,
 });
+
+export default billingReducer; 

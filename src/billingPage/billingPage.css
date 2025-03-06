@@ -26,14 +26,13 @@
 }
 .ant-card-body {
   padding: 10px !important;
-  /* background-color: rgb(204, 236, 231); */
+  background-color: rgb(204, 236, 231);
   min-height: 180px;
-  background: linear-gradient(
+  /* background: linear-gradient(
     to bottom,
     #00748b,
-    #25ebe1 /* #48cdd1,
-    #e0fefe */
-  ) !important;
+    #25ebe1
+  ) !important; */
 }
 .profile_info_head {
   font-weight: 500;
@@ -187,8 +186,9 @@ select {
   margin-top: auto;
   margin-bottom: auto;
   padding-left: 15px;
-  background: linear-gradient(to right, #00748b, #bcc9cc) left no-repeat;
-  background-size: 5px 100%; /* Width of the "border" and height */
+  /* background: linear-gradient(to right, #00748b, #bcc9cc) left no-repeat; */
+  background-size: 5px 100%; 
+  background-color: #bcc9cc
 }
 /* .ant-tabs-card.ant-tabs-top > .ant-tabs-nav .ant-tabs-tab {
   border-color: #00748b;

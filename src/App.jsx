@@ -6,7 +6,9 @@ import BillingPage from "./billingPage/BillingPage";
 import "./index.css";
 import "bootstrap/dist/css/bootstrap.css";
 import { Provider } from "react-redux";
-import store from "./Redux/store";
+
+import store from "emr_ui/Store";
+
 
 const App = () => {
   return (

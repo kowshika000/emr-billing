@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import profile from "../assets/profile.png";
-import { Box, Button, Popover, Tooltip, Typography } from "@mui/material";
+import {  Tooltip } from "@mui/material";
 import { Card, Col, Row } from "antd";
 // import { FileTextOutlined, MessageOutlined } from "@ant-design/icons";
 import { motion } from "framer-motion";
@@ -168,7 +168,7 @@ function PatientInfo() {
                 </div>
               </Card>
             </Col>
-            {patientData?.previousVisitHistory?.map(( data) => (
+            {patientData?.previousVisitHistory?.map((data) => (
               <Col span={5}>
                 <Card title="Previous Visit" bordered={false}>
                   <div className="profile_dispaly">
@@ -184,7 +184,7 @@ function PatientInfo() {
                       <div>{data?.visitDate || "---"}</div>
                       <div>{data?.doctorName || "---"}</div>
                       <div>{data?.speciality || "---"}</div>
-                      <div>{ "---"}</div>
+                      <div>{"---"}</div>
                     </div>
                   </div>
                 </Card>

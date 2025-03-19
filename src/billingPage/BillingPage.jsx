@@ -4,10 +4,10 @@ import PatientInfo from "./PatientInfo";
 import "./billingPage.css";
 import LabTreatment from "./LabTreatment";
 import Consultation from "./Consultation";
-import BillingDetails from "./BillingDetails";
+// import BillingDetails from "./BillingDetails";
 import BillVoucher from "./BillVoucher";
-import { useSelector } from "react-redux";
-import { Spin } from "antd";
+// import { useSelector } from "react-redux";
+// import { Spin } from "antd";
 
 const BillingPage = () => {
   // Destructure and provide a default value in case state.patientDetail is undefined

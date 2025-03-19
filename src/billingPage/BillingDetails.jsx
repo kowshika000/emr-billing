@@ -17,7 +17,7 @@ const BillingDetails = ({ totalPrice }) => {
   });
 
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const pdfRef = useRef(null); // Reference for PDF generation
+  const pdfRef = useRef(null); 
 
   useEffect(() => {
     setBillingData((prevData) => ({
@@ -36,7 +36,7 @@ const BillingDetails = ({ totalPrice }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    setIsModalOpen(true); // Open the modal on submit
+    setIsModalOpen(true); 
   };
 
   const handleDownloadPDF = () => {

@@ -11,6 +11,7 @@ import { Button } from "antd";
 import { useDispatch, useSelector } from "react-redux";
 import { searchLabtest } from "../../Redux/slice/searchLabTestsSlice";
 import { labOrder } from "../../Redux/slice/labOrderSlice";
+import { consultation } from "../../Redux/slice/consultationSlice";
 
 const AddLabtest = ({ onClose }) => {
   const [searchQuery, setSearchQuery] = useState("");
@@ -61,12 +62,14 @@ const AddLabtest = ({ onClose }) => {
   };
 
   const handleSubmit = () => {
+    const patientId = localStorage.getItem("billingPatientId");
     dispatch(labOrder(formValues)).then((resultAction) => {
       if (labOrder.fulfilled.match(resultAction)) {
         console.log(
           "API Response Data labOrder:",
           resultAction.payload.data.data
         );
+        dispatch(consultation({ patientId }));
       } else {
         console.error("API Error:", resultAction.payload);
       }
@@ -104,7 +107,7 @@ const AddLabtest = ({ onClose }) => {
               </div>
             )}
           </div>
-          <Box className="form-container">
+          <Box className="billing-form-container">
             <BillingInput
               label={"Quantity"}
               value={formValues.quantity}

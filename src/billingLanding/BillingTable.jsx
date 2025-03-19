@@ -20,7 +20,9 @@ const BillingTable = ({ navigate, searchData }) => {
 
   const handleNameClick = (patientId) => {
     dispatch(patientDetails({ patientId }));
-    setSelectedPatient(patientId); // Store patient ID for useEffect
+    setSelectedPatient(patientId); 
+
+    localStorage.setItem("billingPatientId", patientId);
   };
 
   // Wait for the data to be available before navigating

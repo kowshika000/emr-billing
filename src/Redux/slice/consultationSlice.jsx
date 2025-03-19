@@ -9,7 +9,7 @@ export const consultation = createAsyncThunk(
       const response = await AxiosInstance.get(API_ENDPOINTS.CONSULTATION, {
         params: credentials,
       });
-      return response;
+      return response.data;
     } catch (error) {
       return rejectWithValue(error.response?.data?.message);
     }

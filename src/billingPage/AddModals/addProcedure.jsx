@@ -85,7 +85,7 @@ const AddProcedure = ({ onClose }) => {
               </div>
             )}
           </div>
-          <Box className="form-container">
+          <Box className="billing-form-container">
             <BillingInput
               label={"Quantity"}
               value={formValues.quantity}

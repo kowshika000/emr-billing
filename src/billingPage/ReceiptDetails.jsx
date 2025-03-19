@@ -1,14 +1,22 @@
 import React, { useState, useRef } from "react";
-import { Box, Modal } from "@mui/material";
+import {
+  Box,
+  Button,
+  Dialog,
+  DialogActions,
+  DialogContent,
+  DialogTitle,
+} from "@mui/material";
 import BillingInput from "../billingComponents/billingInput";
-import { Button } from "antd";
+// import { Button } from "antd";
 import { useNavigate } from "react-router-dom";
 import jsPDF from "jspdf";
 import html2canvas from "html2canvas";
 
-const ReceiptDetails = () => {
+const ReceiptDetails = ({patientData}) => {
   const [receiptType, setReceiptType] = useState("");
   const [amount, setAmount] = useState("");
+  // const patientData = location.state?.patientInfo;
   const [cardDetails, setCardDetails] = useState({
     cardNumber: "",
     validThru: "",
@@ -51,7 +59,7 @@ const ReceiptDetails = () => {
   return (
     <Box>
       <Box className="text-header">Receipt Details</Box>
-      
+
       <div className="bill-form my-4">
         <BillingInput
           label={"Receipt Type"}
@@ -82,14 +90,22 @@ const ReceiptDetails = () => {
 
       <div className="d-flex justify-content-end gap-3">
         <Button
-          style={{ backgroundColor: "rgb(73, 73, 73)", color: "white", border: "none" }}
+          style={{
+            backgroundColor: "rgb(73, 73, 73)",
+            color: "white",
+            border: "none",
+          }}
           onClick={handleGenerate} // Open modal when clicked
         >
           Generate
         </Button>
         <Button
           className="form-btn"
-          style={{ backgroundColor: "rgb(160, 38, 38)", color: "white", border: "none" }}
+          style={{
+            backgroundColor: "rgb(160, 38, 38)",
+            color: "white",
+            border: "none",
+          }}
           onClick={() => navigate("/list")}
         >
           Close
@@ -97,83 +113,104 @@ const ReceiptDetails = () => {
       </div>
 
       {/* MODAL */}
-    
-      <Modal open={open} onClose={handleClose}>
-        <Box
-          className="modal-content"
-          sx={{
-            width: 800,
-            bgcolor: "white",
-            p: 3,
-            borderRadius: 2,
-            boxShadow: 24,
-            position: "absolute",
-            top: "50%",
-            left: "50%",
-            transform: "translate(-50%, -50%)",
-          }}
-        >
-          <Box ref={pdfRef} style={{ padding: "20px", backgroundColor: "#fff" }}>
-            <Box className="hospital-header" style={{ textAlign: "center", marginBottom: "20px" }}>
+
+      <Dialog open={open} onClose={handleClose} maxWidth="md" fullWidth>
+        {/* <DialogTitle>XYZ Hospital</DialogTitle> */}
+        <DialogContent>
+          <Box ref={pdfRef} sx={{ p: 3, backgroundColor: "#fff" }}>
+            <Box
+              className="hospital-header"
+              sx={{ textAlign: "center", mb: 3 }}
+            >
               <h2>XYZ Hospital</h2>
               <p>123, Main Street, City, Country</p>
               <p>Phone: (123) 456-7890 | Email: contact@xyzhospital.com</p>
             </Box>
-            <hr/>
-            <Box display={"flex"} justifyContent={"space-between"}>
-               <p><strong>Receipt No:</strong> RN003</p>
-               <p><strong>Receipt Date:</strong> 2024-9-23</p>
+            <hr />
+            <Box display="flex" justifyContent="space-between" mb={2}>
+              <p className="xl-div">
+                <strong>Receipt No:</strong> RN003
+              </p>
+              <p className="xl-div">
+                <strong>Receipt Date:</strong> 2024-9-23
+              </p>
             </Box>
-            <hr/>
-            <Box className="receipt-details" display={"flex"} justifyContent={"space-between"}>
-              <div>
-              <p><strong>Name:</strong> xxxx</p>
-              <p><strong>Mobile:</strong> xxxxx</p>
-              <p><strong>MRD No:</strong> xxxxx</p>
-              <p><strong>Doctor:</strong> xxxx</p>
-              {/* <p><strong>Doctor:</strong> {balancePayable}</p> */}
-              </div>
-              <div>
-              <p><strong>Payable Amount:</strong> xxx</p>
-              <p><strong>Paid Amount:</strong> xxxx</p>
-              <p><strong>Balance Amount:</strong> xxxx</p>
-              <p><strong>Balance Payable:</strong> xxxx</p>
-              </div>
+            <hr />
+            <Box display="flex" justifyContent="space-between" mb={2}>
+              <Box>
+                <p className="xl-div">
+                  <strong>Name:</strong> {patientData?.patientName}
+                </p>
+                <p className="xl-div">
+                  <strong>Mobile:</strong> {patientData?.phoneNo}
+                </p>
+                <p className="xl-div">
+                  <strong>MRD No:</strong> {patientData?.mrdNo}
+                </p>
+                <p className="xl-div">
+                  <strong>Doctor:</strong> {patientData?.doctorName}
+                </p>
+              </Box>
+              <Box>
+                <p className="xl-div">
+                  <strong>Payable Amount:</strong> xxx
+                </p>
+                <p className="xl-div">
+                  <strong>Paid Amount:</strong> xxxx
+                </p>
+                <p className="xl-div">
+                  <strong>Balance Amount:</strong> xxxx
+                </p>
+                <p className="xl-div">
+                  <strong>Balance Payable:</strong> xxxx
+                </p>
+              </Box>
             </Box>
-            <hr/>
-            <Box >
-               <p><strong>Paid By:</strong>xxx</p>
-               <p><strong>Amount:</strong> xxxxxxx</p>
-               <p><strong>Paid Mode:</strong>xxx</p>
-               <p><strong>For:</strong>xxx</p>
+            <hr />
+            <Box mb={2}>
+              <p className="xl-div">
+                <strong>Paid By:</strong> {patientData?.patientName}
+              </p>
+              <p className="xl-div">
+                <strong>Amount:</strong> xxxxxxx
+              </p>
+              <p className="xl-div">
+                <strong>Paid Mode:</strong> xxx
+              </p>
+              <p className="xl-div">
+                <strong>For:</strong> {patientData?.patientName}
+              </p>
             </Box>
-            <hr/>
+            <hr />
             <Box>
-              <div>xxxxx</div>
+              <div>{patientData?.patientName}</div>
               <div>yyyy-mm-dd</div>
             </Box>
-            {/* {receiptType === "card" && (
-              <Box>
-                <Box className="text-header">Card Details</Box>
-                <p><strong>Card Number:</strong> {cardDetails.cardNumber}</p>
-                <p><strong>Valid Thru:</strong> {cardDetails.validThru}</p>
-                <p><strong>Month:</strong> {cardDetails.month}</p>
-                <p><strong>Year:</strong> {cardDetails.year}</p>
-                <p><strong>Bank:</strong> {cardDetails.bank}</p>
-              </Box>
-            )} */}
           </Box>
-
-          <div className="d-flex justify-content-end gap-3 mt-3">
-            <Button onClick={handleDownloadPDF} style={{ backgroundColor: "rgb(73, 73, 73)", color: "white" }}>
-              Download PDF
-            </Button>
-            <Button onClick={handleClose} style={{ backgroundColor: "rgb(160, 38, 38)", color: "white" }}>
-              Close
-            </Button>
-          </div>
-        </Box>
-      </Modal>
+        </DialogContent>
+        <DialogActions>
+          <Button
+            onClick={handleDownloadPDF}
+            sx={{
+              backgroundColor: "rgb(73, 73, 73)",
+              color: "white",
+              "&:hover": { backgroundColor: "rgb(60, 60, 60)" },
+            }}
+          >
+            Download PDF
+          </Button>
+          <Button
+            onClick={handleClose}
+            sx={{
+              backgroundColor: "rgb(160, 38, 38)",
+              color: "white",
+              "&:hover": { backgroundColor: "rgb(140, 30, 30)" },
+            }}
+          >
+            Close
+          </Button>
+        </DialogActions>
+      </Dialog>
     </Box>
   );
 };

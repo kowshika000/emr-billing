@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   TextField,
   Box,
@@ -6,7 +6,12 @@ import {
   Select,
   InputLabel,
   FormControl,
+  FormHelperText,
+  Button,
+  IconButton,
+  Typography,
 } from "@mui/material";
+import CloseIcon from "@mui/icons-material/Close";
 
 const BillingInput = ({
   label,
@@ -15,57 +20,61 @@ const BillingInput = ({
   type = "text",
   options = [],
   required = false,
+  setDependentValue,
   ...props
 }) => {
+  const [error, setError] = useState(false);
+  const [selectedFile, setSelectedFile] = useState(value || null);
+
+  const formatDate = (date) => {
+    if (!date) return "";
+    return new Date(date).toISOString().split("T")[0];
+  };
+
+  const handleBlur = () => {
+    if (required && !value) {
+      setError(true);
+    } else {
+      setError(false);
+    }
+  };
+
+  const handleFileChange = (event) => {
+    const file = event.target.files[0];
+    if (file) {
+      setSelectedFile(file);
+      onChange(file);
+      setError(false);
+    }
+  };
+
+  const handleRemoveFile = () => {
+    setSelectedFile(null);
+    onChange(null);
+  };
+
   return (
-    <Box >
+    <Box sx={{ width: "100%" }}>
       {type === "select" ? (
         <FormControl
           required={required}
-          variant="standard"
-          sx={{
-            width: "100%",
-            "& .css-5lvf42-MuiSelect-select-MuiInputBase-input-MuiInput-input":
-              {
-                backgroundColor: "rgb(236, 238, 238)",
-                borderRadius: "4px",
-              },
-          }}
+          error={error}
+          size="small"
+          sx={{ width: "100%" }}
         >
-          <InputLabel
-            shrink={true}
-            sx={{
-              color: "rgb(14, 14, 14)",
-              fontSize: "16px",
-              "&.Mui-focused": { color: "rgb(20, 20, 20)" },
-            }}
-          >
-            {label}
-          </InputLabel>
+          <InputLabel>{label}</InputLabel>
           <Select
-            value={
-              options.some((option) => option.label === value) ? value : ""
-            } // Only show label if value matches an option's label
+            value={value || ""}
             onChange={(e) => {
               const selectedOption = options.find(
                 (option) => option.label === e.target.value
               );
-              onChange(selectedOption?.label || ""); // Pass label as selected value
+              onChange(selectedOption?.label || "");
+              setError(required && !selectedOption?.label);
             }}
+            onBlur={handleBlur}
             label={label}
-            sx={{
-              width: "100%",
-              fontSize: "12px",
-              "&:before": {
-                borderBottom: "1px solid rgb(129, 129, 129)",
-              },
-              "&:after": {
-                borderBottom: "1px solid rgb(129, 129, 129)",
-              },
-              "&.Mui-focused:before": {
-                borderBottom: "1px solid rgb(129, 129, 129) !important",
-              },
-            }}
+            sx={{ width: "100%" }}
             {...props}
           >
             <MenuItem value="" disabled>
@@ -74,56 +83,92 @@ const BillingInput = ({
             {options.map((option, index) => (
               <MenuItem
                 key={index}
-                value={option.label} // Use label as value
+                value={option.label}
                 sx={{ fontSize: "12px" }}
               >
                 {option.label}
               </MenuItem>
             ))}
           </Select>
+          {error && <FormHelperText>{label} is required</FormHelperText>}
         </FormControl>
+      ) : type === "file" ? (
+        <Box>
+          {!selectedFile ? (
+            <Button
+              variant="outlined"
+              component="label"
+              className="w-100 my-auto"
+            >
+              Upload {label}
+              <input type="file" hidden onChange={handleFileChange} />
+            </Button>
+          ) : (
+            <Box
+              sx={{
+                display: "flex",
+                alignItems: "center",
+                border: "1px solid #ccc",
+                borderRadius: "4px",
+                padding: "4px 8px",
+                backgroundColor: "#f9f9f9",
+                justifyContent: "space-between",
+              }}
+            >
+              <Typography sx={{ fontSize: "14px", color: "#333" }}>
+                {selectedFile.name}
+              </Typography>
+              <IconButton size="small" onClick={handleRemoveFile}>
+                <CloseIcon fontSize="small" />
+              </IconButton>
+            </Box>
+          )}
+          {/* {error && <FormHelperText error>{label} is required</FormHelperText>} */}
+        </Box>
       ) : (
         <TextField
           label={label}
-          value={value}
-          onChange={onChange}
-          variant="standard"
+          value={type === "date" ? formatDate(value) : value}
+          onChange={(e) => {
+            const newValue = e.target.value;
+            if ((type === "date" || type === "datetime-local") && setDependentValue) {
+              const calculatedAge = calculateAge(newValue);
+              setDependentValue(calculatedAge);
+            }
+            onChange(newValue);
+            setError(required && !newValue);
+          }}
+          onBlur={handleBlur}
+          size="small"
           fullWidth
           required={required}
           type={type === "textarea" ? undefined : type}
           multiline={type === "textarea"}
           rows={type === "textarea" ? 2 : undefined}
+          error={error}
+          helperText={error ? `${label} is required` : ""}
           InputLabelProps={{
-            shrink: true,
-            sx: {
-              color: "rgb(22, 22, 22)",
-              fontSize: "16px", // Font size for label
-              "&.Mui-focused": { color: "rgb(24, 24, 24)" },
-            },
+            shrink: type === "date" ? true : undefined,
           }}
           inputProps={{
-            style: { fontSize: "12px" },
-          }}
-          sx={{
-            "& .MuiInput-underline:before": {
-              borderBottom: "1px solid rgb(129, 129, 129)",
-            },
-            "& .MuiInput-underline:hover:before": {
-              borderBottom: "1px solid rgb(129, 129, 129)",
-            },
-            "& .MuiInput-underline:after": {
-              borderBottom: "1px solid rgb(129, 129, 129)",
-            },
-            "& .css-1yrc8ca-MuiInputBase-input-MuiInput-input": {
-              backgroundColor: "rgb(236, 238, 238)",
-              borderRadius: "4px",
-            },
+            ...(type === "date" && { pattern: "\\d{4}-\\d{2}-\\d{2}" }),
           }}
           {...props}
         />
       )}
     </Box>
   );
+};
+
+const calculateAge = (dob) => {
+  const birthDate = new Date(dob);
+  const today = new Date();
+  const age = today.getFullYear() - birthDate.getFullYear();
+  const m = today.getMonth() - birthDate.getMonth();
+  if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
+    return age - 1;
+  }
+  return age;
 };
 
 export default BillingInput;

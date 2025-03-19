@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkemr_billing=self.webpackChunkemr_billing||[]).push([[809],{7809:(e,s,l)=>{l.d(s,{A:()=>a});var i=l(561),n=l(4848);const a=(0,i.A)((0,n.jsx)("path",{d:"M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"}),"Close")}}]);

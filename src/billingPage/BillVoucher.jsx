@@ -4,6 +4,7 @@ import ReceiptDetails from "./ReceiptDetails";
 import BillingInput from "../billingComponents/billingInput";
 
 const BillVoucher = () => {
+  const patientData = location.state?.patientInfo;
   const [billVoucher, setBillVoucher] = useState({
     patientName: "",
     insurenceCompany: "",
@@ -38,7 +39,7 @@ const BillVoucher = () => {
           <BillingInput label={"Service Date"} type="date" />
         </div>
       </form>
-      <ReceiptDetails />
+      <ReceiptDetails patientData={patientData}/>
     </Box>
   );
 };

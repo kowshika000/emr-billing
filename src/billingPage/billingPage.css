@@ -15,7 +15,7 @@
 } */
 .ant-card-head {
   min-height: 38px !important;
-  background-color: #35b1ab !important;
+  background-color: #afc9c7 !important;
   /* background: linear-gradient(
     to bottom,
     #1e8a85,
@@ -26,7 +26,7 @@
 }
 .ant-card-body {
   padding: 10px !important;
-  background-color: rgb(204, 236, 231);
+  background-color: rgb(247, 247, 247);
   min-height: 180px;
   /* background: linear-gradient(
     to bottom,
@@ -79,7 +79,7 @@ a {
 .display-mbl {
   gap: 10px;
 }
-input:focus-within {
+/* input:focus-within {
   border-color: #2b9aca !important;
 }
 input:focus-visible {
@@ -97,7 +97,7 @@ select {
   border-radius: 8px;
   padding: 5px !important;
   width: 190px;
-}
+} */
 .css-7mctoh-MuiButtonBase-root-MuiCheckbox-root {
   color: white !important;
 }
@@ -175,8 +175,8 @@ select {
     #48cdd1 75%,
     #aacccc 75%,
     #aacccc 100%
-  ); */
-  background: linear-gradient(to bottom, #00748b, #25ebe1);
+  ); */ 
+  background-color: #afc9c7;
   border-radius: 8px;
 }
 
@@ -188,7 +188,7 @@ select {
   padding-left: 15px;
   /* background: linear-gradient(to right, #00748b, #bcc9cc) left no-repeat; */
   background-size: 5px 100%; 
-  background-color: #bcc9cc
+  /* background-color: #bcc9cc */
 }
 /* .ant-tabs-card.ant-tabs-top > .ant-tabs-nav .ant-tabs-tab {
   border-color: #00748b;
@@ -202,3 +202,8 @@ select {
   .MuiAutocomplete-input {
   font-size: 12px !important;
 } */
+.xl-div{
+  display: flex;
+  justify-content: space-between;
+  width: 200px;
+}
